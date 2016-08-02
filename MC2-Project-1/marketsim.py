@@ -8,6 +8,7 @@ import numpy as np
 import datetime as dt
 import os
 from util import get_data, plot_data
+import matplotlib.pyplot as plt
 
 def compute_portvals(orders_file = "./orders/orders.csv", start_val = 1000000):
     orders = pd.read_csv(orders_file, index_col='Date', parse_dates=True, na_values=['nan'])
@@ -70,8 +71,8 @@ def test_code():
     # note that during autograding his function will not be called.
     # Define input parameters
 
-    of = "./orders/orders3.csv"
-    sv = 1000000
+    of = "./orders/mc2p2.csv"
+    sv = 10000
 
     # Process orders
     portvals = compute_portvals(orders_file = of, start_val = sv)
@@ -85,6 +86,17 @@ def test_code():
 
     dates = pd.date_range(start_date, end_date)
     spx = get_data(['$SPX'], dates).ix[:,'$SPX']
+
+    """
+    # Plot for MC2-Project-2
+    ax = (portvals/portvals[0]).plot()
+    ax = (spx/spx[0]).plot()
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Normalised price")
+    ax.legend(['Portfolio', '$SPX'])
+    ax.set_title("Simple Bollinger Bands strategy vs. SPX")
+    plt.show()
+    """
 
     # Get portfolio stats
     cum_ret, avg_daily_ret, std_daily_ret, sharpe_ratio = assess_portfolio(portvals)

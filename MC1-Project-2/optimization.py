@@ -32,7 +32,6 @@ def optimize_portfolio(sd=dt.datetime(2008,1,1), ed=dt.datetime(2009,1,1), \
 
     port_val, cr, adr, sddr, sr = assess_portfolio(allocs, prices)
 
-
     # Compare daily portfolio value with SPY using a normalized plot
     if gen_plot:
         df_temp = pd.concat([port_val / port_val.ix[0,:], prices_SPY / prices_SPY.ix[0,:]], keys=['Portfolio', 'SPY'], axis=1)
